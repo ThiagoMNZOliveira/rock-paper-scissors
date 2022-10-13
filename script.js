@@ -1,32 +1,65 @@
+let score = [0, 0];
 
-const rockPaperScissors = ['Rock', 'Paper', 'Scissors'];
-let playerChoice = prompt("Make your choice, 0 for Rock, 1 for Paper and 2 for Scissors");
+function game() {
+    const rockPaperScissors = ['Rock', 'Paper', 'Scissors'];
 
-const computerChoice = () => {
-    return rockPaperScissors[Math.floor(Math.random() * (3 - 0) + 0)];
+    const computerChoice = () => {
+        return rockPaperScissors[Math.floor(Math.random() * (3 - 0) + 0)];
+    }
+
+    const player = () => {
+        let playerChoice = prompt("Make your choice, 0 for Rock, 1 for Paper and 2 for Scissors");
+        return rockPaperScissors[playerChoice];
+    }
+
+    const getWinner = (computer, player) => {
+        if (player == computer) {
+            return console.log('Draw');
+        }
+        if (player == 'Rock') {
+            if (computer == 'Paper') {
+                score[1]++;
+                return console.log(`You lose!! You chose ${player} and computer chose ${computer}`);
+            }
+            if (computer == 'Scissors') {
+                score[0]++;
+                return console.log(`You won!! You chose ${player} and computer chose ${computer}`);
+            }
+        }
+        if (player == 'Paper') {
+            if (computer == 'Rock') {
+                score[0]++;
+                return console.log(`You won!! You chose ${player} and computer chose ${computer}`);
+            }
+            if (computer == 'Scissors') {
+                score[1]++;
+                return console.log(`You lose!! You chose ${player} and computer chose ${computer}`);
+            }
+        }
+        if (player == 'Scissors') {
+            if (computer == 'Rock') {
+                score[1]++;
+                return console.log(`You lose!! You chose ${player} and computer chose ${computer}`);
+            }
+            if (computer == 'Paper') {
+                score[0]++;
+                return console.log(`You won!! You chose ${player} and computer chose ${computer}`);
+            }
+        }
+    }
+    getWinner(computerChoice(), player());
+
 }
 
-const player = () => {
-    return rockPaperScissors[playerChoice];
+for (let i = 0; i < 5; i++) {
+    game();
 }
 
-const getWinner = (computer, player) => {
-    if (player == computer) {
-        return console.log('Draw');
-    }
-    if (player == 'Rock') {
-        if (computer == 'Paper') return console.log(`You lost!! You chose ${player} and computer chose ${computer}`);
-        if (computer == 'Scissors') return console.log(`You won!! You chose ${player} and computer chose ${computer}`);
-    }
-    if (player == 'Paper') {
-        if (computer == 'Rock') return console.log(`You won!! You chose ${player} and computer chose ${computer}`);
-        if (computer == 'Scissors') return console.log(`You lost!! You chose ${player} and computer chose ${computer}`);
-    }
-    if (player == 'Scissors') {
-        if (computer == 'Rock') return console.log(`You lost!! You chose ${player} and computer chose ${computer}`);
-        if (computer == 'Paper') return console.log(`You won!! You chose ${player} and computer chose ${computer}`);
-    }
-}
-getWinner(computerChoice(), player());
+console.log(`Player || Computer
+     ${score[0]} || ${score[1]}`);
+
+
+
+
 
 
