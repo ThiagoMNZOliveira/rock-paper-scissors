@@ -25,6 +25,12 @@ function game(player) {
     const display = document.querySelector('.display');
 
     const computerChoice = () => {
+        if(score[0] >= 5 || score[1] >= 5){
+            score[0] = 0;
+            score[1] = 0;
+        }
+
+
         return rockPaperScissors[Math.floor(Math.random() * (3 - 0) + 0)];
     }
 
@@ -65,8 +71,9 @@ function game(player) {
     }
     getWinner(computerChoice(), player);
     if(score[0] >= 5 || score[1] >= 5) {
-        display.innerText = `Player || Computer
-        ${score[0]}  ${score[1]}`
+        display.innerText = `Score
+        Player: ${score[0]}
+        Computer: ${score[1]}`
     }
 }
 
